@@ -16,7 +16,6 @@ body {
 }
 .passwd{
 	text-align: center;
-	height: 14em;
 	width: 100%;
 	display: table;
 }
@@ -39,19 +38,19 @@ input {
 	background-color: white;
 	color: black;
 	border: 0;
-	border: 0.07em #ccc solid;
-	font-size: 2em;
+  border: 0.085em #eee solid;
+	border-bottom: 0.085em #ccc solid;
+	font-size: 1.5em;
 	margin: 0.5em 0.25em 0.5em 0.25em;
-  padding: 0.3em;
+  padding: 0.3em 0.5em;
   min-width: 4em;
 }
-
 input:hover {
 	position:relative;
-	top:1px;
-  left:1px;
-  background-color: #000;
-  color: #fff;
+  background-color: #000 !important;
+  border: 0.085em #000 solid;
+  border-bottom: 0.085em #000 solid;
+  color: #fff !important;
 }
 input:active {
 	position:relative;
@@ -63,6 +62,16 @@ input:active {
 .contain {
 	padding: 10% 2%;
 	margin: -60px auto 0px auto;
+}
+.center{
+  text-align: center;
+}
+.horizontalRule{
+  margin: 0.5em auto 1em auto;
+  border-top: 0.085em #eee solid;
+  width: 30%;
+  font-size: 1.5em;
+  text-align: center;
 }
 .footer {
 	font-size: 0.6em;
@@ -84,7 +93,7 @@ input:active {
 	color: #333;
 	margin:0;
 }
-.red{background-color: red;}.blue{background-color: blue;}.green{background-color: green;}.purple{background-color: purple;}.orange{background-color: orange;}.yellow{background-color: yellow;}
+.red{background-color: red;text-align:center;}.blue{background-color: blue;}.green{background-color: green;}.purple{background-color: purple;}.orange{background-color: orange;}.yellow{background-color: yellow;}
 </style>
 </head>
 
@@ -128,11 +137,13 @@ fill="#123" stroke="none">
 </svg> 
 
 <div class="contain">
-<div class="passwd ">
-	<div id="xkcd_pw_gen_result" class=""></div>
-	<!--<div id="temp1" class="red">0</div><div id="test2" class="blue">0</div><div id="test3" class="green">0</div>-->
-</div>
+<div class="passwd">
+  <div id="xkcd_pw_gen_result" class=""></div>
 
+  
+    <!--<div id="test2" class="blue">0</div><div id="test3" class="green">0</div>-->
+</div>
+<div class="center"><div id="temp1" class="horizontalRule"></div></div>
 <div class="input_button">
 	<input type="button" value="another" onclick="xkcd_pw_gen()" onload="xkcd_pw_gen()" /> <input type="button" id="copy" onclick="CopyToClipboard('xkcd_pw_gen_result')" value="copy" />
 </div>
