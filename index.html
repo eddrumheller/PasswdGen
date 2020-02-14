@@ -10,11 +10,7 @@ body {
   background-color: white;
   font-family: 'Open Sans', sans-serif;
 }
-::selection {/* WebKit/Blink Browsers */
-  background: #000;
-  color: #fff;
-}
-::-moz-selection {/* Gecko Browsers */
+::selection {
   background: #000;
   color: #fff;
 }
@@ -43,9 +39,26 @@ input {
 	background-color: white;
 	color: black;
 	border: 0;
-	border-bottom: 0.1em #ccc solid;
+	border: 0.07em #ccc solid;
 	font-size: 2em;
-	margin: 0.5em 0em 0em 0em;
+	margin: 0.5em 0.25em 0.5em 0.25em;
+  padding: 0.3em;
+  min-width: 4em;
+}
+
+input:hover {
+	position:relative;
+	top:1px;
+  left:1px;
+  background-color: #000;
+  color: #fff;
+}
+input:active {
+	position:relative;
+	top:2px;
+  left:2px;
+  background-color: #222;
+  color: #fff;
 }
 .contain {
 	padding: 10% 2%;
@@ -121,7 +134,7 @@ fill="#123" stroke="none">
 </div>
 
 <div class="input_button">
-	<input type="button" value="another" onclick="xkcd_pw_gen()" onload="xkcd_pw_gen()" /> <input type="button" onclick="CopyToClipboard('xkcd_pw_gen_result')" value="copy" />
+	<input type="button" value="another" onclick="xkcd_pw_gen()" onload="xkcd_pw_gen()" /> <input type="button" id="copy" onclick="CopyToClipboard('xkcd_pw_gen_result')" value="copy" />
 </div>
 <div id="length" class=""></div>
 <script language="JavaScript">
@@ -178,6 +191,7 @@ var hexcase=0;var b64pad="";function hex_sha1(a){return rstr2hex(rstr_sha1(str2r
 // A SHA-1 hash generated on the server which is unique for each visit:
 var xkcd_pw_gen_server_hash = "9a12a67a468a8727cc9e8a957bdaf3e9be348773";
 
+// Word & Symbols Banks
 var xkcd_pw_gen_wordlist = [
 "ability","able","aboard","about","above","accept","accident","according",
 "account","accurate","acres","across","act","action","active","activity",
@@ -424,7 +438,6 @@ var xkcd_pw_gen_wordlist = [
 "year","yellow","yes","yesterday","yet","you","young","younger",
 "your","yourself","youth","zero","zoo"
 ];
-
 var xkcd_pw_gen_symlist = [
 "!","#","$","%","&","*",];
 
@@ -460,14 +473,26 @@ function xkcd_pw_gen_create_hash()
     return result;
 }
 
-// Generate a new passphrase and update the document:
+// CORE PROGRAM - Generate a new passphrase and update the document:
 function xkcd_pw_gen()
 {
+  //Resets Copy/Copied button on new run
+  document.getElementById("copy").value="copy";
+  document.getElementById("copy").setAttribute('style', 'color: black') ;
+  document.getElementById("copy").style.backgroundColor = "white";
+
+  //Resets Text Selection on new run
+  if (window.getSelection) {
+        window.getSelection().removeAllRanges();
+    } else if (document.selection) {
+        document.selection.empty();
+    }
+
   // Gets 2 Words from wordbank
 	var hash = xkcd_pw_gen_create_hash();
     var choices = [];
 	
-    for (var w = 0; w < 2; w++) //ED - Changed 4 to 2 to limit number of words
+    for (var w = 0; w < 2; w++)
     {
         var jsRandom = Math.floor(Math.random() * 0x100000000);
         var index = ((jsRandom ^ hash[w]) + 0x100000000) % xkcd_pw_gen_wordlist.length;
@@ -488,16 +513,17 @@ function xkcd_pw_gen()
     return str.toLowerCase().split(' ').map(function(chunk){
         return chunk.charAt(0).toUpperCase() + chunk.substring(1);
     }).join(' ');
-}
+  }
 	
-	 // Combines Word 1, Number, Symbol, and Word 2 into Password
+	// Combines Word 1, Number, Symbol, and Word 2 into Password
 	 str = document.getElementById('xkcd_pw_gen_result').innerHTML = Capitalize(choices[0]) + TwoDigit + symchoices + Capitalize(choices[1]);
 	 
-   // Count length of password for display
+  // Count length of password for display
 	 var n = str.length; 
 	 document.getElementById('length').innerHTML = n + " characters";
 
-}
+} // end xkcd_pw_gen function
+
 // Generates an initial Password displayed on page
 xkcd_pw_gen();
 </script>
@@ -516,6 +542,9 @@ function CopyToClipboard(containerid) {
     range.selectNode(document.getElementById(containerid));
     window.getSelection().addRange(range);
     document.execCommand("copy");
+    document.getElementById("copy").value="copied";
+    document.getElementById("copy").setAttribute('style', 'color: white') ;
+    document.getElementById("copy").style.backgroundColor = "black";
     //alert("text copied")
   }
 }
