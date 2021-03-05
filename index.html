@@ -6,105 +6,69 @@
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet"> 
 
 <style>
-body {
-  background-color: white;
-  font-family: 'Open Sans', sans-serif;
+  body {font-family: 'Open Sans', sans-serif;}
+
+  @media (prefers-color-scheme: dark) {
+    svg {fill: white;}
+    body {background-color: #151515;font-family: 'Open Sans', sans-serif;color: #eee;}
+    ::selection {background: #fff;color: #000;}
+    .passwd{text-align: center;width: 100%;display: table;}
+    #xkcd_pw_gen_result {display: table-cell;vertical-align: middle;font-weight: bold;font-size: 5em;margin: 0em;}
+    #length {text-align: center;font-size: 1em;margin: 1em 0em 0em 0em;}
+    .input_button {text-align: center;}
+    input {background-color: black;color: white;border: 0;border: 0.085em #222 solid;border-bottom: 0.085em #222 solid;font-size: 1.5em;margin: 0.5em 0.25em 0.5em 0.25em;padding: 0.3em 0.5em;min-width: 4em;}
+      input:hover {position:relative;background-color: #fff !important;border: 0.085em #fff solid;border-bottom: 0.085em #fff solid;color: #000 !important;}
+      input:active {position:relative;top:2px;left:2px;background-color: #eee;color: #000;}
+    .contain {padding: 10% 2%;margin: -60px auto 0px auto;}
+    .center{text-align: center;}
+    .horizontalRule{margin: 0.5em auto 1em auto;border-top: 0.085em #eee solid;width: 30%;font-size: 1.5em;text-align: center;}
+    .footer {font-size: 0.6em;text-align: center;margin: 6em 0em 0em 0em;}
+      .footer a:link{color:inherent;text-decoration: none;}
+      .footer a:visited{color:#ddd;text-decoration: none;}
+      .footer a:hover{color:#bdbdbd; text-decoration: underline;}
+      .footer a:active{color:black;background:#222;text-decoration: none;}
+      .footer span {font-size: 1.4em;}
+      .footer p {color: #eee;margin:0;}
+    input[value=copied] {color:black;background-color: white;}
+    .red{background-color: red;text-align:center;}.blue{background-color: blue;}.green{background-color: green;}.purple{background-color: purple;}.orange{background-color: orange;}.yellow{background-color: yellow;}
 }
-::selection {
-  background: #000;
-  color: #fff;
+  @media (prefers-color-scheme: light){
+    svg {fill: black;}
+    body{background-color: white;font-family: 'Open Sans', sans-serif;color: #111;}
+    ::selection {background: #000;color: #fff;}
+    .passwd{text-align: center;width: 100%;display: table;}
+    #xkcd_pw_gen_result {display: table-cell;vertical-align: middle;font-weight: bold;font-size: 5em;margin: 0em;}
+    #length {text-align: center;font-size: 1em;margin: 1em 0em 0em 0em;}
+    .input_button {text-align: center;}
+    input {background-color: white;color: black;border: 0;border: 0.085em #eee solid;border-bottom: 0.085em #ccc solid;font-size: 1.5em;margin: 0.5em 0.25em 0.5em 0.25em;padding: 0.3em 0.5em;min-width: 4em;}
+      input:hover {position:relative;background-color: #000 !important;border: 0.085em #000 solid;border-bottom: 0.085em #000 solid;color: #fff !important;}
+      input:active {position:relative;top:2px;left:2px;background-color: #222;color: #fff;}
+    .contain {padding: 10% 2%;margin: -60px auto 0px auto;}
+    .center{text-align: center;}
+    .horizontalRule{margin: 0.5em auto 1em auto;border-top: 0.085em #eee solid;width: 30%;font-size: 1.5em;text-align: center;}
+    .footer {font-size: 0.6em;text-align: center;margin: 6em 0em 0em 0em;}
+      .footer a:link{color:inherent;text-decoration: none;}
+      .footer a:visited{color:#333;text-decoration: none;}
+      .footer a:hover{color:#666;text-decoration: underline;}
+      .footer a:active{color:white;background:#ccc;text-decoration: none;}
+      .footer span {font-size: 1.25em;margin: 0;}
+      .footer span {font-size: 1.4em;}
+      .footer p {color: #333;margin:0;}
+    input[value=copied] {color:white;background-color: black;}
+    .red{background-color: red;text-align:center;}.blue{background-color: blue;}.green{background-color: green;}.purple{background-color: purple;}.orange{background-color: orange;}.yellow{background-color: yellow;}
 }
-.passwd{
-	text-align: center;
-	width: 100%;
-	display: table;
-}
-#xkcd_pw_gen_result {
-	display: table-cell;
-	vertical-align: middle;
-	font-weight: bold;
-	font-size: 5em;
-	margin: 0em;
-}
-#length {
-	text-align: center;
-	font-size: 1em;
-	margin: 1em 0em 0em 0em;
-}
-.input_button {
-	text-align: center;
-}
-input {
-	background-color: white;
-	color: black;
-	border: 0;
-  border: 0.085em #eee solid;
-	border-bottom: 0.085em #ccc solid;
-	font-size: 1.5em;
-	margin: 0.5em 0.25em 0.5em 0.25em;
-  padding: 0.3em 0.5em;
-  min-width: 4em;
-}
-input:hover {
-	position:relative;
-  background-color: #000 !important;
-  border: 0.085em #000 solid;
-  border-bottom: 0.085em #000 solid;
-  color: #fff !important;
-}
-input:active {
-	position:relative;
-	top:2px;
-  left:2px;
-  background-color: #222;
-  color: #fff;
-}
-.contain {
-	padding: 10% 2%;
-	margin: -60px auto 0px auto;
-}
-.center{
-  text-align: center;
-}
-.horizontalRule{
-  margin: 0.5em auto 1em auto;
-  border-top: 0.085em #eee solid;
-  width: 30%;
-  font-size: 1.5em;
-  text-align: center;
-}
-.footer {
-	font-size: 0.6em;
-	text-align: center;
-	margin: 6em 0em 0em 0em;
-}
-.footer a:link{color:inherent;text-decoration: none;}
-.footer a:visited{color:#333;text-decoration: none;}
-.footer a:hover{color:#666;text-decoration: underline;}
-.footer a:active{color:white;background:#ccc;text-decoration: none;}
-.footer span {
-	font-size: 1.25em;
-	margin: 0;
-}
-.footer span {
-	font-size: 1.4em;
-}
-.footer p {
-	color: #333;
-	margin:0;
-}
-.red{background-color: red;text-align:center;}.blue{background-color: blue;}.green{background-color: green;}.purple{background-color: purple;}.orange{background-color: orange;}.yellow{background-color: yellow;}
 </style>
 </head>
 
 <body>
 
 <!--ED logo-->
+<!--Copyright Ed Drumheller-->
 <svg version="1.0" xmlns="https://www.w3.org/2000/svg"
  width="57px" height="57px" viewBox="0 0 476.000000 876.000000"
  preserveAspectRatio="xMidYMid meet">
 <g transform="translate(0.000000,876.000000) scale(0.100000,-0.100000)"
-fill="#123" stroke="none">
+stroke="none">
 <path d="M3350 8431 c-111 -37 -210 -110 -308 -228 -104 -124 -183 -277 -274
 -528 -22 -60 -47 -115 -55 -122 -8 -6 -23 -53 -33 -105 -10 -51 -32 -147 -48
 -213 -80 -316 -139 -710 -174 -1155 -21 -262 -17 -1197 5 -1480 47 -591 122
@@ -489,8 +453,8 @@ function xkcd_pw_gen()
 {
   //Resets Copy/Copied button on new run
   document.getElementById("copy").value="copy";
-  document.getElementById("copy").setAttribute('style', 'color: black') ;
-  document.getElementById("copy").style.backgroundColor = "white";
+ // document.getElementById("copy").setAttribute('style', 'color: black') ;
+ // document.getElementById("copy").style.backgroundColor = "white";
 
   //Resets Text Selection on new run
   if (window.getSelection) {
@@ -554,14 +518,13 @@ function CopyToClipboard(containerid) {
     window.getSelection().addRange(range);
     document.execCommand("copy");
     document.getElementById("copy").value="copied";
-    document.getElementById("copy").setAttribute('style', 'color: white') ;
-    document.getElementById("copy").style.backgroundColor = "black";
-    //alert("text copied")
+  
   }
 }
+
 </script>
 
-<div class="footer"><span>minimalized & modified by <a href="https://eddrumheller.com/" alt="That's Me!">Ed Drumheller</a></span><p>based on code by <a href="https://preshing.com/20110811/xkcd-password-generator/">Jeff Preshing</a> and webcomic by <a href="https://xkcd.com/936/">Randall Munroe</a></p></div>
+<div class="footer"><span>minimalized & modified by <a href="https://eddrumheller.com/" alt="That's Me!">Ed Drumheller</a></span><p>based on code by <a href="https://preshing.com/20110811/xkcd-password-generator/">Jeff Preshing</a> and webcomic by <a href="https://xkcd.com/936/">Randall Munroe</a></p><p>Now with automatic darkmode</p></div>
 
 </div>
 
