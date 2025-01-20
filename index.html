@@ -1,11 +1,50 @@
 <!DOCTYPE html>
 <head>
 	<meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Password Generator</title>
 
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet"> 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet"> 
 
 <style>
+/***** DISPLAY ELEMENTS HACK ***********************************************************/     
+/* { background-color: rgba(255, 69, 58, 0.8); } 
+* * { background-color: rgba(50, 205, 50, 0.8); } 
+* * * { background-color: rgba(30, 144, 255, 0.8); } 
+* * * * { background-color: rgba(238, 130, 238, 0.8); } 
+* * * * * { background-color: rgba(0, 255, 255, 0.8); } 
+* * * * * * { background-color: rgba(255, 215, 0, 0.8); }
+* * * * * * * { background-color: rgba(255, 20, 147, 0.8); } 
+* * * * * * * * { background-color: rgba(127, 255, 0, 0.8); } 
+* * * * * * * * * { background-color: rgba(0, 191, 255, 0.8); } 
+/***************************************************************************************/
+
+@media screen and (min-width: 800px) { /* For Laptops and Larger */
+    svg {transform: scale(1.2);}
+    #xkcd_pw_gen_result{display:table-cell;vertical-align:middle;font-weight:bold;font-size:5em;margin:0em;}
+    .contain {padding: 10% 2%;margin: -60px auto 0px auto;}
+    input {font-size: 1.5em;margin: 0.5em 0.25em 0.5em 0.25em;padding: 0.3em 0.5em;min-width: 4em;}
+}
+@media screen and (min-width: 500px) and (max-width: 799px) { /* For Tablets */
+    svg {transform: scale(1);}
+    #xkcd_pw_gen_result{display:table-cell;vertical-align:middle;font-weight:bold;font-size:3em;margin:0em;}
+    .contain {padding: 10% 2%;margin: -3em auto 0px auto;}
+    input {font-size: 1.5em;margin: 0.5em 0.25em 0.5em 0.25em;padding: 0.3em 0.5em;min-width: 4em;}
+
+}
+@media screen and (min-width: 200px) and (max-width: 499px) { /* For Phones */
+    svg {transform: scale(.7);}
+    #xkcd_pw_gen_result{display:table-cell;vertical-align:middle;font-weight:bold;font-size:1.5em;margin:0em;}
+    .contain {padding: 10% 2%;margin: -2em auto 0px auto;}
+    input {font-size: 1.2em;margin: 0.5em 0.25em 0.5em 0.25em;padding: 0.3em 0.5em;min-width: 4em;}
+
+}
+
+
+
 body {
   background-color: white;
   font-family: 'Open Sans', sans-serif;
@@ -14,17 +53,16 @@ body {
   background: #000;
   color: #fff;
 }
+.roboto-mono-1 {
+  font-family: "Roboto Mono", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
 .passwd{
 	text-align: center;
 	width: 100%;
 	display: table;
-}
-#xkcd_pw_gen_result {
-	display: table-cell;
-	vertical-align: middle;
-	font-weight: bold;
-	font-size: 5em;
-	margin: 0em;
 }
 #length {
 	text-align: center;
@@ -40,10 +78,6 @@ input {
 	border: 0;
   border: 0.085em #eee solid;
 	border-bottom: 0.085em #ccc solid;
-	font-size: 1.5em;
-	margin: 0.5em 0.25em 0.5em 0.25em;
-  padding: 0.3em 0.5em;
-  min-width: 4em;
 }
 input:hover {
 	position:relative;
@@ -58,10 +92,6 @@ input:active {
   left:2px;
   background-color: #222;
   color: #fff;
-}
-.contain {
-	padding: 10% 2%;
-	margin: -60px auto 0px auto;
 }
 .center{
   text-align: center;
@@ -137,7 +167,7 @@ fill="#123" stroke="none">
 </svg> 
 
 <div class="contain">
-<div class="passwd">
+<div class="passwd roboto-mono-1">
   <div id="xkcd_pw_gen_result" class=""></div>
 
   
